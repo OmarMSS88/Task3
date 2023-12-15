@@ -13,7 +13,7 @@ def preprocess_image(uploaded_file):
     img = image.load_img(uploaded_file, target_size=(64, 64))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
-    preprocessed_img = img_array / 255.0
+    preprocessed_img = img_array
     return img, preprocessed_img
 
 # Function to make predictions

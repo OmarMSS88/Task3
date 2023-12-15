@@ -44,6 +44,15 @@ for i, class_name in enumerate(class_names):
     single_image_path = f'images/single_image/{class_name}.jpg'
     columns[i].image(single_image_path, caption=f'{class_name.capitalize()} Image', use_column_width=True)
 
+st.subheader('Confusionmatrix')
+st.markdown("""
+Here you can see both the confusionmatrix of my model and the one that googles teachable machine gave. here you can see how well the models perform with the test data.
+You can see that googles model exceeds mine by a longshot. But my model performs decently.
+""")
+columns2 = st.columns(2)
+columns2[0].image('images/ConfMatrixO.png', width=400)
+columns2[1].image('images/download.png', width=400)
+
 st.subheader('Predict Uploaded Image')
 st.markdown("""
 Here you can upload your own image and let the model predict what it is (spoon, fork, knife, cup, or spatula).
@@ -57,7 +66,7 @@ if uploaded_file is not None:
     img, preprocessed_image = preprocess_image(uploaded_file)
 
     # Display the uploaded image
-    st.image(img, caption='Uploaded Image', use_column_width=True)
+    st.image(img, caption='Uploaded Image', width=500)
 
     # Preprocess the image and make predictions
     predicted_class, probabilities = predict_image(preprocessed_image, model)
@@ -68,3 +77,4 @@ if uploaded_file is not None:
     st.subheader('Probabilities:')
     for i, class_prob in enumerate(probabilities):
         st.write(f'{class_names[i]}: {class_prob:.4f}')
+    
